@@ -1,5 +1,4 @@
-const {PriceUpdater} = require("./utils/updateFunctions")
-
+const { PriceUpdater } = require("./utils/updateFunctions");
 
 class Product {
   constructor(name, sellIn, price) {
@@ -9,39 +8,41 @@ class Product {
   }
 }
 
-
-
-
 class CarInsurance {
   constructor(products = []) {
     this.products = products;
   }
+
+  updatePriceForDays(days = 30) {
+    const productsAtDayZero = [...this.products];
+    for (let day = 1; day <= days; day++) {
+      console.log(`Day ${day}:`);
+      for (const product of productsAtDayZero) {
+        PriceUpdater.updatePriceByType(product);
+        console.log(`  Producto ${product.name}: Precio ${product.price}, SellIn ${product.sellIn}`);
+      }
+    }
+  }
 }
 
-
 const productsAtDayZero = [
-  new Product("Medium Coverage", 10, 20),
-  new Product("Full Coverage", 2, 0),
-  new Product("Low Coverage", 5, 7),
-  new Product("Mega Coverage", 0, 80),
-  new Product("Mega Coverage", -1, 80),
-  new Product("Special Full Coverage", 15, 20),
-  new Product("Special Full Coverage", 10, 49),
-  new Product("Special Full Coverage", 5, 49),
-  new Product("Super Sale", 3, 6),
+  new Product("Normal", 10, 20),
+  new Product("FullCoverage", 2, 0),
+  new Product("MegaCoverage", 0, 80),
+  new Product("MegaCoverage", -1, 80),
+  new Product("SpecialFullCoverage", 15, 20),
+  new Product("SpecialFullCoverage", 10, 49),
+  new Product("SpecialFullCoverage", 5, 49),
+  new Product("SuperSale", 3, 6),
 ];
 
 
 
-for (let day = 1; day <= 20; day++) {
-  console.log(`Day ${day}:`);
-  for (const product of productsAtDayZero) {
-      PriceUpdater.updatePriceByType(productsAtDayZero);
-      console.log(`  Producto ${product.name}: Precio ${product.price}, SellIn ${product.sellIn}`);
-  }
-}
+const carInsurance = new CarInsurance(productsAtDayZero);
+carInsurance.updatePriceForDays(); 
 
 
 module.exports = {
-  Product
-}
+  Product,
+  CarInsurance
+};

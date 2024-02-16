@@ -45,7 +45,7 @@ class PriceUpdater {
         return product;
     };
 
-    static SuperSaleProduct(product)  {
+    static SuperSale(product)  {
         product.price -= 2;
         product.sellIn -= 1;
         if (product.price <= 0) {

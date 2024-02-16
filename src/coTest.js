@@ -37,7 +37,6 @@ const productsAtDayZero = [
 ];
 
 
-
 const carInsurance = new CarInsurance(productsAtDayZero);
 carInsurance.updatePriceForDays(); 
 

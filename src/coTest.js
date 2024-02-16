@@ -19,7 +19,9 @@ class CarInsurance {
       console.log(`Day ${day}:`);
       for (const product of productsAtDayZero) {
         PriceUpdater.updatePriceByType(product);
-        console.log(`  Producto ${product.name}: Precio ${product.price}, SellIn ${product.sellIn}`);
+        console.log(
+          `  Producto ${product.name}: Precio ${product.price}, SellIn ${product.sellIn}`
+        );
       }
     }
   }
@@ -36,12 +38,10 @@ const productsAtDayZero = [
   new Product("SuperSale", 3, 6),
 ];
 
-
 const carInsurance = new CarInsurance(productsAtDayZero);
-carInsurance.updatePriceForDays(); 
-
+carInsurance.updatePriceForDays();
 
 module.exports = {
   Product,
-  CarInsurance
+  CarInsurance,
 };
